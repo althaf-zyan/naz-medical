@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Admin Access | NAZ Medical Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Sora:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+  <body>
+    <main class="admin-shell">
+      <section class="login-panel" data-login-panel>
+        <div class="login-card">
+          <img src="images/naz-logo.png" alt="NAZ Medical Center" />
+          <h1>Admin Access</h1>
+          <p>Upload doctor photos and manage website image categories.</p>
+          <form data-login-form>
+            <label>
+              Password
+              <input type="password" name="password" autocomplete="current-password" required />
+            </label>
+            <button type="submit">Login</button>
+            <span class="form-message" data-login-message></span>
+          </form>
+        </div>
+      </section>
+
+      <section class="dashboard is-hidden" data-dashboard>
+        <header class="admin-header">
+          <div>
+            <span>NAZ Medical Center</span>
+            <h1>Image Admin Dashboard</h1>
+          </div>
+          <div class="header-actions">
+            <a href="index.html">View Website</a>
+            <button type="button" data-logout>Logout</button>
+          </div>
+        </header>
+
+        <section class="stats-grid" aria-label="Image statistics">
+          <article>
+            <span>Total Images</span>
+            <strong data-stat-total>0</strong>
+          </article>
+          <article>
+            <span>Doctor Male</span>
+            <strong data-stat-male>0</strong>
+          </article>
+          <article>
+            <span>Doctor Female</span>
+            <strong data-stat-female>0</strong>
+          </article>
+          <article>
+            <span>Hero + Gallery</span>
+            <strong data-stat-public>0</strong>
+          </article>
+        </section>
+
+        <section class="admin-grid">
+          <form class="upload-panel" data-upload-form>
+            <h2>Add Images</h2>
+            <p class="admin-note">
+              Uploading to Dr. Jameel or Dr. Zulfa updates the public website gallery on this browser.
+            </p>
+            <p>Accepted: JPG, PNG, WebP. Max size: 5MB per file. SVG and scripts are blocked.</p>
+            <label>
+              Where should this image appear?
+              <select name="category" required>
+                <option value="doctor-male">Dr. Jameel - Male Doctor</option>
+                <option value="doctor-female">Dr. Zulfa - Female Doctor</option>
+                <option value="hero">Hero Section</option>
+                <option value="gallery">Gallery</option>
+              </select>
+            </label>
+            <label>
+              Caption
+              <input type="text" name="caption" placeholder="Example: Dr. Jameel" maxlength="80" />
+            </label>
+            <label class="file-drop">
+              <input type="file" name="images" accept="image/jpeg,image/png,image/webp" multiple />
+              <span>Select or drop images here</span>
+            </label>
+            <button type="submit">Upload & Show on Website</button>
+            <div class="validation-log" data-validation-log></div>
+          </form>
+
+          <section class="library-panel">
+            <div class="library-toolbar">
+              <div>
+                <h2>Image Library</h2>
+                <p data-selection-count>0 selected</p>
+              </div>
+              <div class="toolbar-controls">
+                <select data-filter-category aria-label="Filter by category">
+                  <option value="all">All Categories</option>
+                  <option value="doctor-male">Dr. Jameel - Male Doctor</option>
+                  <option value="doctor-female">Dr. Zulfa - Female Doctor</option>
+                  <option value="hero">Hero Section</option>
+                  <option value="gallery">Gallery</option>
+                </select>
+                <button type="button" data-select-visible>Select Visible</button>
+              </div>
+            </div>
+
+            <div class="bulk-panel">
+              <select data-bulk-category aria-label="Bulk category">
+                <option value="">Move selected to...</option>
+                <option value="doctor-male">Dr. Jameel - Male Doctor</option>
+                <option value="doctor-female">Dr. Zulfa - Female Doctor</option>
+                <option value="hero">Hero Section</option>
+                <option value="gallery">Gallery</option>
+              </select>
+              <input type="text" data-bulk-caption placeholder="Bulk caption text" maxlength="80" />
+              <button type="button" data-bulk-edit>Apply Edit</button>
+              <button class="danger" type="button" data-bulk-delete>Delete Selected</button>
+            </div>
+
+            <div class="image-grid" data-image-grid></div>
+            <p class="empty-state" data-empty-state>No images uploaded yet.</p>
+          </section>
+        </section>
+      </section>
+    </main>
+
+    <template data-image-template>
+      <article class="image-card">
+        <label class="image-select">
+          <input type="checkbox" />
+          <span>Select</span>
+        </label>
+        <img alt="" />
+        <div class="image-card__body">
+          <input class="caption-input" type="text" maxlength="80" />
+          <select class="category-input">
+            <option value="doctor-male">Dr. Jameel - Male Doctor</option>
+            <option value="doctor-female">Dr. Zulfa - Female Doctor</option>
+            <option value="hero">Hero Section</option>
+            <option value="gallery">Gallery</option>
+          </select>
+          <small></small>
+          <div class="card-actions">
+            <button type="button" data-save-card>Save</button>
+            <button class="danger" type="button" data-delete-card>Delete</button>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <script src="js/admin.js"></script>
+  </body>
+</html>
